@@ -1,0 +1,18 @@
+# masters_ufmg tracks only this project's own writing: AGENTS.md + docs/ (text).
+# Ignore everything at the repo root, then re-include the documentation.
+/*
+!/.gitignore
+!/AGENTS.md
+!/docs/
+
+# Per-host working clones of forks (durable copies live on their fork remotes)
+/run/
+
+# Within docs: exclude bulky / copyrighted / sensitive material (kept locally only)
+docs/papers/
+docs/datasets/AriaScenes_download_urls.json
+
+# junk
+__pycache__/
+*.pyc
+.DS_Store
