@@ -7,6 +7,27 @@ Copy one of these to start a new chat with minimal typing. They all rely on
 > [environment.md](environment.md)). **proc2** is a separate candidate host that has **not** been
 > profiled yet — don't assume it has proc6's hardware.
 
+## Handoff (short) — to continue an in-progress run
+
+Smallest prompt; the agent self-orients from `AGENTS.md` + [`STATUS.md`](STATUS.md). Replace
+`<HOST>` and append any extra steering lines you want below it.
+
+```
+Continue my masters project at /home/guilhermetoledo/projects/masters.
+Read AGENTS.md and docs/STATUS.md, then continue. I'm on <HOST>.
+Keep docs/STATUS.md and results updated. Ask before any long/GPU job.
+```
+
+One-liner (when you trust the agent to self-orient):
+
+```
+Continue my masters project: read /home/guilhermetoledo/projects/masters/AGENTS.md + docs/STATUS.md; I'm on <HOST>. What's next?
+```
+
+---
+
+The prompts below are the longer **first-time setup on a host** versions.
+
 ## proc6 (current, profiled run host)
 
 ```

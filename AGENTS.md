@@ -22,6 +22,8 @@ without further explanation.
    - Any run/experiment → copy `docs/results/_experiment-template.md`, fill it with **real
      commands and real output**, add a row to `docs/results/index.md`.
    - Change status/scope → update `docs/plan.md`.
+   - Start/finish a run or change active state → update `docs/STATUS.md` (the handoff snapshot a
+     new agent reads first).
 2. **Evidence over assertion.** Back every claim with a command actually run and its output. A
    command exiting 0 is not proof — verify the artifact (file exists, non-trivial size, metric
    moved, GPU actually used). Label anything you did not run as **UNTESTED**.
@@ -99,6 +101,7 @@ export RESULTS_ROOT=/draft-hdd/guilhermetoledo/masters/results
 
 | Want to… | Go to |
 |----------|-------|
+| Continue / hand off a run | `docs/STATUS.md` (state) + `docs/prompts.md` (handoff prompt) |
 | Understand the project | `docs/project-overview.md` |
 | See the plan / what's next | `docs/plan.md` |
 | Find the code for a paper | `docs/repositories.md` |

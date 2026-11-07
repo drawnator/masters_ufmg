@@ -13,6 +13,7 @@ sibling repository folders; datasets and experiment outputs live outside this re
 | Path | Purpose |
 |------|---------|
 | [project-overview.md](project-overview.md) | What the project is: goal, pipeline, references. Distilled from the thesis proposal. |
+| [STATUS.md](STATUS.md) | Living current-state / handoff snapshot — read first to continue a run. |
 | [plan.md](plan.md) | Implementation plan: workstreams, milestones, current status. |
 | [repositories.md](repositories.md) | Every paper → its code repository, clone status, role in the project, and build notes. |
 | [environment.md](environment.md) | Run-host model (currently proc6) + proc3-observed gotchas to verify; data root and results root locations. |
