@@ -23,7 +23,11 @@ Split by ownership, not by host:
    branch (e.g. `ufmg`), publish that branch. Repos that run unmodified are **not** forked or
    published — reproducibility comes from pinning their upstream commit hash in the results log
    (the experiment template already records repo + commit).
-3. **Per-host working copies for a modified repo** go in a **per-host folder on durable `/home`**
+3. **Default: run from the shared baseline read-only.** Running the code only reads source and
+   writes to `$RESULTS_ROOT` on local disk, so both hosts can run from `./facebook_egocentric` at
+   once (each with its own local venv). A clone/branch is created **only when a host must change
+   code**; never edit the shared baseline in place. **Per-host working copies for a modified repo**
+   go in a **per-host folder on durable `/home`**
    (e.g. `/home/.../masters/run/proc2/<repo>`, `.../run/proc6/<repo>`), both on branch `ufmg`,
    synced by `git push`/`pull`, and **pushed to GitHub often**. Separate folders mean the two hosts
    never share a working tree or `.git` (no clobber, no network-`.git` race). Build artifacts stay

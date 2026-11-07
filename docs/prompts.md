@@ -21,31 +21,30 @@ command output. Launch long jobs detached and report log path + PID. Tell me the
 wait for my OK before any long/GPU job.
 ```
 
-## proc2 (run egocentric_splats; proc6 already running it)
+## proc2 (run egocentric_splats; proc6 is using the project too)
 
 ```
 Work on my masters project at /home/guilhermetoledo/projects/masters.
-Read AGENTS.md and docs/ (start with docs/runbooks/facebook_egocentric.md). I'm on proc2 and want
-to run egocentric_splats. It is ALREADY running on proc6 — do NOT touch proc6's clone or the
-baseline clone.
+Read AGENTS.md and docs/runbooks/facebook_egocentric.md. I'm on proc2; proc6 is also using this
+project (currently downloading the dataset) — don't disturb it.
 
-1. proc2 isn't profiled yet: capture its facts (hostname, GPU/CUDA, CPU avx2, disk) per
-   docs/environment.md and add a proc2 row. Verify /draft-hdd is a REAL mounted disk with free
-   space: `findmnt /draft-hdd` must show its own device (on proc3 it is only an empty dir on / —
-   never trust that). If proc2's /draft-hdd is not a real disk, STOP and tell me.
-2. Make proc2's own working clone at /home/guilhermetoledo/projects/masters/run/proc2/facebook_egocentric
-   from the fork github.com/drawnator/egocentric_splats, and check out branch `ufmg` to reuse the
-   fixes already made on proc6 (if `ufmg` is not on the fork yet, fetch it from proc6's clone at
-   ../run/proc6/facebook_egocentric).
-3. Build the venv + CUDA extensions on proc2's LOCAL /draft-hdd (ENV_ROOT, UV_CACHE_DIR,
-   TORCH_EXTENSIONS_DIR, TMPDIR as in the runbook); match torch to proc2's CUDA.
-4. Running does NOT need a new branch. Only commit to `ufmg` and push to the fork if you actually
-   change code; put host differences (CUDA, GPU index) in env/config, not code — make a proc2
-   branch only if the code must truly differ.
+No code fixes have been needed yet, so RUN FROM THE SHARED baseline ./facebook_egocentric as-is —
+do NOT create a clone, branch, or fork unless you actually need to change code. If a fix becomes
+necessary, make a per-host clone of the fork under run/proc2 on branch `ufmg` (per the runbook);
+never edit ./facebook_egocentric in place.
 
-Follow AGENTS.md: keep docs/ updated (log the run in docs/results/, record proc2 facts + any
-fixes), back claims with real command output, run long jobs detached (report log + PID), check
-nvidia-smi and a disk floor first. Tell me the next step and wait for my OK before any long/GPU job.
+Setup on proc2:
+- proc2 isn't profiled: capture its facts (GPU/CUDA, CPU avx2, disk) per docs/environment.md and
+  add a proc2 row. Verify /draft-hdd is a REAL mount: `findmnt /draft-hdd` must show its own device
+  (on proc3 it's just an empty dir on / — don't trust it). If it's not real, STOP and tell me.
+- Build a venv on proc2's LOCAL /draft-hdd (ENV_ROOT/UV_CACHE_DIR/TORCH_EXTENSIONS_DIR/TMPDIR as in
+  the runbook); match torch to proc2's CUDA; install from ./facebook_egocentric/requirements.txt.
+- The dataset lives on each host's local /draft-hdd; if it's not on proc2 yet, download it there
+  (manifest in docs/datasets) — confirm a disk budget/floor first. proc6 has its own copy.
+
+Follow AGENTS.md: keep docs updated (record proc2 facts, log runs in docs/results/), back claims
+with real command output, run long jobs detached (report log + PID), check nvidia-smi + disk first.
+Tell me the next step and wait for my OK before any long/GPU job.
 ```
 
 ## Generic run host (any other machine)

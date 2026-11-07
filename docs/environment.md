@@ -41,9 +41,10 @@ on `/draft-hdd`.
 | `docs/` + `AGENTS.md` (the `masters_ufmg` repo) | Datasets (`$DATA_ROOT`) — re-downloadable |
 | Baseline reference clones, paper PDFs, manifests | Results (`$RESULTS_ROOT`), incl. trained scenes — **not** copied to `/home`; Guilherme backs them up to his own server via SFTP later |
 
-**Fork a code repo only when it needs code changes** ([decisions/0007](decisions/0007-git-fork-organization.md));
-repos that run unmodified stay plain upstream clones, pinned by commit hash in the results log. For
-a repo you *do* modify (expected first: `facebook_egocentric`):
+**Default: run unmodified code from the shared baseline clone** (`./facebook_egocentric`) —
+read-only, so both hosts can run from it at once, each with its own local venv. **Fork/clone a repo
+only when a host must change code** ([decisions/0007](decisions/0007-git-fork-organization.md)); the
+commit it ran at is recorded in the results log. For a repo you *do* modify:
 
 - Fork it on GitHub, add the fork as a remote (`fork`), make changes on a branch (e.g. `ufmg`), and
   **`git push` often** — GitHub is the durable source of truth, not any local disk.

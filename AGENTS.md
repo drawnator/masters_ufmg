@@ -34,9 +34,10 @@ without further explanation.
    [0007](docs/decisions/0007-git-fork-organization.md)). `/draft-hdd` is **not durable** (it failed
    before and lost uncommitted changes), so **code changes live on `/home` and are pushed to
    GitHub**, not only on `/draft-hdd`. **Fork a repo only when it needs code changes** (unmodified
-   repos stay plain clones, pinned by commit in results logs); for a modified repo, each host uses
-   its **own clone of the fork in a per-host folder on `/home`** (e.g. `…/masters/run/<host>/<repo>`,
-   branch `ufmg`), never the shared baseline tree. Keep only rebuildable things on local
+   repos stay plain clones, pinned by commit in results logs). **Default: run from the shared
+   baseline `./facebook_egocentric` read-only** (both hosts can, each with its own local venv) —
+   create a per-host clone of the fork (`…/masters/run/<host>/<repo>`, branch `ufmg`) **only when a
+   host must change code**, and never edit the baseline in place. Keep only rebuildable things on local
    `/draft-hdd` — venvs (`$ENV_ROOT`), uv cache, `TORCH_EXTENSIONS_DIR`, datasets, results.
    Trained scenes/results are **not** copied to `/home`; Guilherme backs them up to his own server
    via SFTP. Your writing (`docs/` + this file) is the `masters_ufmg` repo
