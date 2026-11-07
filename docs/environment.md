@@ -22,9 +22,11 @@ run host at the same path — only the data/results roots are local to it.
 > has **not** been measured — do not copy proc6's facts onto it. Capture proc2's own facts (command
 > under "Run-host setup gotchas" below) and add a `proc2` row before relying on them.
 
-> **Not proc3.** An earlier attempt used `proc3`, but its `/draft-hdd` was removed after a failure
-> on 2026-11-06, so any data/outputs that lived there are gone. Do not assume anything persists on
-> `proc3`.
+> **Not proc3, and verify `/draft-hdd` on any host.** An earlier attempt used `proc3`; its
+> `/draft-hdd` failed (2026-11-06) and as of 2026-11-07 `/draft-hdd` there is **just an empty
+> directory on `/`** (`findmnt /draft-hdd` → not a mountpoint), so writing to it fills the root disk
+> and nothing persists. Before using `/draft-hdd` on *any* run host, confirm it is a real mount:
+> `findmnt /draft-hdd` must show its own device. If it doesn't, stop — do not write there.
 
 ## Concurrent runs on proc2 + proc6 (shared `/home`)
 
