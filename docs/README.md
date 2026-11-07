@@ -22,6 +22,7 @@ sibling repository folders; datasets and experiment outputs live outside this re
 | [papers/](papers/) | PDFs of all cited + extra papers (VeRLab lineage under `papers/verlab/`). |
 | [thesis-template/](thesis-template/) | UFMG `ppgccufmg` LaTeX template + PDF/A scripts; rendered proposal at `thesis-template/exemplo/exemplo.pdf`. |
 | [prompts.md](prompts.md) | Ready-to-paste prompts to start a new chat on the run host with minimal typing. |
+| [runbooks/](runbooks/) | Per-repo setup runbooks (clone + uv venv + build + run), e.g. `facebook_egocentric.md`. |
 
 ## Conventions
 
